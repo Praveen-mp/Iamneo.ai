@@ -1,68 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-import mockCards from "../../data/cards";
-import ICategory from "../../interfaces/ICategory";
+import { IStatus } from "../../data/statuses";
+import mockColumns from "../../data/column";
 const initialState = {
-  cards: mockCards,
-  searchText: ''
+  columns: mockColumns,
+  updatedColumns: undefined
 }
 
-export const cardsSlice = createSlice({
-  name: 'cards',
+export const columnsSlice = createSlice({
+  name: 'columns',
   initialState,
   reducers: {
-    setCards: (state, action) => {
-      state.cards = action.payload
-    },
-    setSearchText: (state, action) => {
-      state.searchText = action.payload
-    },
-    addCard: (state, action) => {
-      const card = action.payload
+    setColumns: (state, action) => {
+      state.columns = action.payload;
+     },
+     updateColumns: (state, action) => {
 
-      state.cards = [...state.cards, card]
-    },
-    updateOneCard: (state, action) => {
-      const cardId = action.payload.id;
+      const cardId = action.payload
 
-      const updatedCards = state.cards.map(card => {
-        if (card.id === cardId) return action.payload;
-        else return card;
-      })
+      const column = state.columns.find(item => item.id === IStatus.BACKLOG)
+  
+      const columns = state.columns.filter(item => item.id !== IStatus.BACKLOG)
 
-      state.cards = updatedCards;
-    },
-    filterCards: (state, action) => {
-      const searchText = state.searchText;
-      const categories = action.payload.categories || Object.values(ICategory);
-
-      const filteredCards = [...state.cards]
-        .map(card => {
-            if (searchText.length > 0){
-              if (card.title.toUpperCase()
-                .includes(searchText.toUpperCase()) && categories
-                .includes(card.category)
-                ) return {...card, hidden: false}
-            } else {
-              if (categories.includes(card.category)) return {...card, hidden: false}
-            }
-            return {...card, hidden: true}
-          }
-        );
-
-      state.cards = filteredCards;
-    },
-    clearFilters: (state) => {
-      const clearedFiltersCards = state.cards.map(card => ({
-        ...card,
-        hidden: false
-      }))
-
-      state.cards = clearedFiltersCards;
+      if(column) {
+        const updatedColumn = {
+          ...column,
+          cardsIds: [...column.cardsIds, cardId]
+        }
+  
+        state.columns = [updatedColumn, ...columns]
+      }
     }
   }
 })
 
-export const { setCards, updateOneCard, filterCards, clearFilters, addCard, setSearchText } = cardsSlice.actions;
+export const { setColumns, updateColumns } = columnsSlice.actions;
 
-export default cardsSlice.reducer;
+export default columnsSlice.reducer;

@@ -10,7 +10,7 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice from "../redux/boardsSlice";
-
+import SearchInput from "./SearchBar";
 function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [isElipsisMenuOpen, setIsElipsisMenuOpen] = useState(false);
@@ -58,6 +58,7 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
             iamneo.ai 
           </h3>
           <span className="md:text-4xl  hidden md:inline-block font-small  font-sans">talent center</span>
+          <SearchInput/>
           <div className=" flex items-center ">
             <h3 className=" truncate max-w-[200px] md:text-2xl text-xl font-bold md:ml-20 font-sans  ">
               {/* {board.name} */}

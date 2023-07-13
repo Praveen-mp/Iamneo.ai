@@ -6,11 +6,11 @@ import cardsReducer from './slices/card.slice';
 const store = configureStore({
   reducer: {
     columns: columnsReducer,
-    cards: cardsReducer
+    card: cardsReducer
   }
 })
 
-export const RootState = store.getState();
-export const AppDispatch = store.dispatch;
+// export const RootState = store.getState();
+// export const AppDispatch = store.dispatch;
 
 export default store

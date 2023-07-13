@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import EmptyBoard from './components/EmptyBoard';
 import boardsSlice from "./redux/boardsSlice";
+import SearchInput from "./components/SearchBar";
 
 function App() {
   const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
@@ -14,6 +15,7 @@ function App() {
     dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
   return (
     <div className=" overflow-hidden  overflow-x-scroll">
+      
       <>
         {boards.length > 0 ?
         <>
@@ -31,7 +33,6 @@ function App() {
           <EmptyBoard type='add'/>
         </>
       }
-        
       </>
     </div>
   );
