@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import boardsSlice from "../redux/boardsSlice";
+import boardsSlice, * as boardActions from "../store/slices/boards.slice";
 
 function Subtask({ index, taskIndex, colIndex }) {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ function Subtask({ index, taskIndex, colIndex }) {
 
   const onChange = (e) => {
     dispatch(
-      boardsSlice.actions.setSubtaskCompleted({ index, taskIndex, colIndex })
+      boardActions.setSubtaskCompleted({ index, taskIndex, colIndex })
     );
   };
 

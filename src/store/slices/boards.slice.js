@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import data from "../data.json";
-
+import data from "../../data.json";
+import mockCards from "../../data/card";
+const initialState={
+  boards: mockCards,
+  searchText:"",
+  searchQuery:''
+}
 const boardsSlice = createSlice({
   name: "boards",
   initialState: data.boards,
@@ -15,6 +20,9 @@ const boardsSlice = createSlice({
       };
       board.columns = payload.newColumns;
       state.push(board);
+    },
+    setSearchText:(state,action)=>{
+         state.boards=action.payload;
     },
     editBoard: (state, action) => {
       const payload = action.payload;
@@ -97,7 +105,35 @@ const boardsSlice = createSlice({
       const col = board.columns.find((col, i) => i === payload.colIndex);
       col.tasks = col.tasks.filter((task, i) => i !== payload.taskIndex);
     },
+    filterBoards:(state,action)=>{
+      const searchText=state.searchText;
+      const title=action.payload.title;
+      const filterBoards = state.boards.map(board=>{
+        if(searchText.length>0){
+           if(board.title.toUpperCase().includes(searchText.toUpperCase())){
+               return {...board,hidden:false};
+           }else{
+             if(title.includes(board.title)) return {...board,hidden:false};
+           }
+           return {...board,hidden:true};
+        }
+      });
+      state.boards=filterBoards;
+    },
+    clearFilters:(state)=>{
+      const clearedFiltersBoards = state.boards.map(board => ({
+        ...board,
+        hidden: false
+      }));
+
+      state.boards = clearedFiltersBoards;
+    }
+    
   },
 });
 
-export default boardsSlice;
+export const { addBoard, editBoard, deleteBoard, setBoardActive, addTask, editTask, dragTask, setSubtaskCompleted, setTaskStatus, deleteTask,clearFilters,filterBoards,setSearchText } = boardsSlice.actions;
+
+export default boardsSlice.reducer;
+
+

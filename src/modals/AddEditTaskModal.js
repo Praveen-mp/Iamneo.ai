@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import crossIcon from "../assets/icon-cross.svg";
-import boardsSlice from "../redux/boardsSlice";
+import boardsSlice, * as boardActions from "../store/slices/boards.slice";
 
 function AddEditTaskModal({
   type,
@@ -77,7 +77,7 @@ function AddEditTaskModal({
   const onSubmit = (type) => {
     if (type === "add") {
       dispatch(
-        boardsSlice.actions.addTask({
+        boardActions.addTask({
           title,
           description,
           subtasks,
@@ -87,7 +87,7 @@ function AddEditTaskModal({
       );
     } else {
       dispatch(
-        boardsSlice.actions.editTask({
+        boardActions.editTask({
           title,
           description,
           subtasks,

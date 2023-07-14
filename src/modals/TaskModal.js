@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ElipsisMenu from "../components/ElipsisMenu";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
-import boardsSlice from "../redux/boardsSlice";
+import boardsSlice,* as boardActions from "../store/slices/boards.slice";
 import Subtask from "../components/Subtask";
 import AddEditTaskModal from "./AddEditTaskModal";
 import DeleteModal from "./DeleteModal";
@@ -37,7 +37,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
       return;
     }
     dispatch(
-      boardsSlice.actions.setTaskStatus({
+      boardActions.setTaskStatus({
         taskIndex,
         colIndex,
         newColIndex,
@@ -49,7 +49,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
 
   const onDeleteBtnClick = (e) => {
     if (e.target.textContent === "Delete") {
-      dispatch(boardsSlice.actions.deleteTask({ taskIndex, colIndex }));
+      dispatch(boardActions.deleteTask({ taskIndex, colIndex }));
       setIsTaskModalOpen(false);
       setIsDeleteModalOpen(false);
     } else {

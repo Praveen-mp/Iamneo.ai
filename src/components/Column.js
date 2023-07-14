@@ -1,7 +1,7 @@
 import { shuffle } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import boardsSlice from "../redux/boardsSlice";
+import boardsSlice, * as boardActions from "../store/slices/boards.slice";
 import Task from "./Task";
 
 function Column({ colIndex }) {
@@ -37,7 +37,7 @@ function Column({ colIndex }) {
 
     if (colIndex !== prevColIndex) {
       dispatch(
-        boardsSlice.actions.dragTask({ colIndex, prevColIndex, taskIndex })
+        boardActions.dragTask({ colIndex, prevColIndex, taskIndex })
       );
     }
   };

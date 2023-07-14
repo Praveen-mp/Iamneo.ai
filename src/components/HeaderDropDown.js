@@ -5,7 +5,7 @@ import boardIcon from "../assets/icon-board.svg";
 import useDarkMode from "../hooks/useDarkMode";
 import darkIcon from "../assets/icon-dark-theme.svg";
 import lightIcon from "../assets/icon-light-theme.svg";
-import boardsSlice from "../redux/boardsSlice";
+import boardsSlice, * as boardActions from "../store/slices/boards.slice";
 
 
 function HeaderDropDown({ setOpenDropdown, setIsBoardModalOpen }) {
@@ -48,7 +48,7 @@ function HeaderDropDown({ setOpenDropdown, setIsBoardModalOpen }) {
               } `}
               key={index}
               onClick={() => {
-                dispatch(boardsSlice.actions.setBoardActive({ index }));
+                dispatch(boardActions.setBoardActive({ index }));
               }}
             >
               <img src={boardIcon} className="  filter-white  h-4 " />{" "}

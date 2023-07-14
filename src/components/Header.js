@@ -9,15 +9,27 @@ import AddEditTaskModal from "../modals/AddEditTaskModal";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteModal from "../modals/DeleteModal";
-import boardsSlice from "../redux/boardsSlice";
+import boardsSlice, * as boardActions from "../store/slices/boards.slice";
 import SearchInput from "./SearchBar";
+import BasicBreadcrumbs from "./Breadcrumb";
+import ResponsiveAppBar from "./AppNav";
+import mockCards from "../data/card";
+import { useContext } from "react";
+import { SearchContext } from "../searchInput/SearchContext";
 function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [isElipsisMenuOpen, setIsElipsisMenuOpen] = useState(false);
   const [boardType, setBoardType] = useState("add");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
-
+  const { searchQuery } = useContext(SearchContext);
+  const filteredCards = mockCards.Work.columns.filter((card) =>
+  // card.title.toLowerCase().includes(searchQuery.toLowerCase())
+    card.id ==searchQuery
+);
+// const filteredCards = mockCards.Work.columns.map((ids)=>{
+//     ids.id.includes(searchQuery.toLowerCase());
+// })
   const dispatch = useDispatch();
   
   const boards = useSelector((state) => state.boards);
@@ -40,8 +52,8 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
 
   const onDeleteBtnClick = (e) => {
     if (e.target.textContent === "Delete") {
-      dispatch(boardsSlice.actions.deleteBoard());
-      dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
+      dispatch(boardActions.deleteBoard());
+      dispatch(boardActions.setBoardActive({ index: 0 }));
       setIsDeleteModalOpen(false);
     } else {
       setIsDeleteModalOpen(false);
@@ -50,6 +62,7 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
 
   return (
     <div className=" p-4 fixed left-0 bg-white dark:bg-[#2b2c37] z-50 right-0 ">
+     
       <header className=" flex justify-between dark:text-white items-center  ">
         {/* Left Side  */}
         <div className=" flex items-center space-x-2  md:space-x-4">
@@ -57,8 +70,31 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
           <h3 className=" md:text-4xl  hidden md:inline-block font-bold  font-sans">
             iamneo.ai 
           </h3>
-          <span className="md:text-4xl  hidden md:inline-block font-small  font-sans">talent center</span>
+          <span className="md:text-2xl  hidden md:inline-block font-small  font-sans">talent center</span>
           <SearchInput/>
+           
+          {filteredCards.map((card) => (
+              <div key={card.id}>
+                hello
+                <h3>{card.name}</h3>
+                <p>{card.tasks.map((i)=>{
+                  <div>
+                    {i.description},
+                    {i.status},
+                    {i.status}
+                  </div>
+                })}</p>
+              </div>
+      ))}
+
+          
+          {/* {filteredCards.map((card)=>{
+             <div key={card}>
+                   
+             </div>
+          })} */}
+         
+
           <div className=" flex items-center ">
             <h3 className=" truncate max-w-[200px] md:text-2xl text-xl font-bold md:ml-20 font-sans  ">
               {/* {board.name} */}
@@ -118,6 +154,7 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
           />
         )}
       </header>
+      
       {isTaskModalOpen && (
         <AddEditTaskModal
           setIsAddTaskModalOpen={setIsTaskModalOpen}
@@ -142,6 +179,7 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
         />
       )}
     </div>
+    
   );
 }
 

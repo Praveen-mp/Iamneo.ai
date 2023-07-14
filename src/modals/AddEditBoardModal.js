@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import crossIcon from "../assets/icon-cross.svg";
-import boardsSlice from "../redux/boardsSlice";
+import boardsSlice, * as boardActions from "../store/slices/boards.slice";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,8 +9,8 @@ function AddEditBoardModal({ setIsBoardModalOpen, type , }) {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [name, setName] = useState("");
   const [newColumns, setNewColumns] = useState([
-    { name: "Todo", tasks: [], id: uuidv4() },
-    { name: "Doing", tasks: [], id: uuidv4() },
+    { name: "open", tasks: [], id: uuidv4() },
+    { name: "contacted", tasks: [], id: uuidv4() },
   ]);
   const [isValid, setIsValid] = useState(true);
   const board = useSelector((state) => state.boards).find(
@@ -57,9 +57,9 @@ function AddEditBoardModal({ setIsBoardModalOpen, type , }) {
   const onSubmit = (type) => {
     setIsBoardModalOpen(false);
     if (type === "add") {
-      dispatch(boardsSlice.actions.addBoard({ name, newColumns }));
+      dispatch(boardActions.addBoard({ name, newColumns }));
     } else {
-      dispatch(boardsSlice.actions.editBoard({ name, newColumns }));
+      dispatch(boardActions.editBoard({ name, newColumns }));
     }
   };
 
