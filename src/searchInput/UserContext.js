@@ -25,8 +25,8 @@ export const UserProvider = ({ children }) => {
   }, [searchName, users]);
 
   return (
-    <UserContext.Provider value={{ users: filteredUsers, setSearchName,setSelectedUser,setFilteredUsers, selectedUser,
-      setSelectedUser,
+    <UserContext.Provider value={{ users: filteredUsers, setSearchName, setSelectedUser,setFilteredUsers,
+      
       
     }}>
       {children}

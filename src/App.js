@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import EmptyBoard from './components/EmptyBoard';
-import boardActions from "./store/slices/boards.slice";
-
+import boardsSlice, * as boardActions from "./store/slices/boards.slice";
 function App() {
   const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
   const dispatch = useDispatch();
+  
   const boards = useSelector((state) => {
     console.log(state);
     return state.boards
@@ -18,6 +18,7 @@ function App() {
     dispatch(boardActions.setBoardActive({ index: 0 }));
   return (
     <div className=" overflow-hidden  overflow-x-scroll">
+      
       <>
         {boards.length > 0 ?
         <>
@@ -34,7 +35,6 @@ function App() {
         <>
           <EmptyBoard type='add'/>
         </>
-        
       }
       </>
     </div>
