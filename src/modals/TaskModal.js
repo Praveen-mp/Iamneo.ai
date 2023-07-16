@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useContext } from "react";
 import ElipsisMenu from "../components/ElipsisMenu";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
-import boardsSlice,* as boardActions from "../store/slices/boards.slice";
+import boardActions from "../store/slices/boards.slice";
 import AddEditTaskModal from "./AddEditTaskModal";
 import DeleteModal from "./DeleteModal";
-import { useContext } from "react";
+
 import UserContext from "../searchInput/UserContext";
 function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const dispatch = useDispatch();
+  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [isElipsisMenuOpen, setIsElipsisMenuOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const boards = useSelector((state) => state.boards);
@@ -17,7 +19,6 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const col = columns.find((col, i) => i === colIndex);
   const task = col.tasks.find((task, i) => i === taskIndex);
   const subtasks = task.subtasks;
-   const {users}=useContext(UserContext)
   let completed = 0;
   subtasks.forEach((subtask) => {
     if (subtask.isCompleted) {
@@ -61,7 +62,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
     }
   };
 
-  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
+  
 
   const setOpenEditModal = () => {
     setIsAddTaskModalOpen(true);
