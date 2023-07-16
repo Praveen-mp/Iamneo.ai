@@ -9,7 +9,7 @@ import AddEditTaskModal from "../modals/AddEditTaskModal";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteModal from "../modals/DeleteModal";
-import boardSlice, * as boardActions from "../store/slices/boards.slice";
+import boardActions from "../store/slices/boards.slice";
 
 import SearchInput from "./SearchBar";
 function Header({ setIsBoardModalOpen, isBoardModalOpen }) {

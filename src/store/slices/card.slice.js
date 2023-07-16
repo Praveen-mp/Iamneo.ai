@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import mockCards from "../../data/card";
-// import ICategory from "../../interfaces/ICategory";
+
 
 const initialState = {
   cards: mockCards,

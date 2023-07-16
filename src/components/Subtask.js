@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import boardsSlice, * as boardActions from "../store/slices/boards.slice";
+import boardActions from "../store/slices/boards.slice";
 
 function Subtask({ index, taskIndex, colIndex }) {
   const dispatch = useDispatch();
