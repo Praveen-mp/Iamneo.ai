@@ -14,7 +14,6 @@ function Task({ colIndex, taskIndex }) {
   const task = col.tasks.find((task, i) => i === taskIndex);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [value, setValue] = React.useState(2);
-
   let completed = 0;
   let subtasks = task.subtasks;
 
@@ -24,8 +23,10 @@ function Task({ colIndex, taskIndex }) {
     }
   });
   
-  const { users } = useContext(UserContext);
-
+  const { users,setSelectedUser } = useContext(UserContext);
+  const handleCardClick = (user) => {
+    setSelectedUser(user);
+  };
   const handleOnDrag = (e) => {
     e.dataTransfer.setData(
       "text",
@@ -43,9 +44,10 @@ function Task({ colIndex, taskIndex }) {
         draggable
         onDragStart={handleOnDrag}
         className=" w-[280px] first:my-5 rounded-lg  bg-white  dark:bg-[#2b2c37] shadow-[#364e7e1a] py-6 px-3 shadow-lg hover:text-[#635fc7] dark:text-white dark:hover:text-[#635fc7] cursor-pointer mt-2"
+        
       >
          <ul>
-          <li key={user.login.uuid}>
+          <li key={user.login.uuid} onClick={() => handleCardClick(user)}>
             <p className=" font-bold text-xl tracking-tighter mt-0 text-gray-500">{`${user.name.first}`}</p>
             <p className=" font-semibold text-xl tracking-tighter mt-0 text-gray-500">{`${user.name.last}`}</p>
             <hr />

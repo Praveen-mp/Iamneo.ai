@@ -7,7 +7,7 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [searchName, setSearchName] = useState('');
   const [filteredUsers, setFilteredUsers] = useState([]);
-
+  const [selectedUser, setSelectedUser] = useState(null);
   useEffect(() => {
     // Fetch data from the API and update the users state
     fetch('https://randomuser.me/api/?results=10')
@@ -25,7 +25,10 @@ export const UserProvider = ({ children }) => {
   }, [searchName, users]);
 
   return (
-    <UserContext.Provider value={{ users: filteredUsers, setSearchName }}>
+    <UserContext.Provider value={{ users: filteredUsers, setSearchName,setSelectedUser,setFilteredUsers, selectedUser,
+      setSelectedUser,
+      
+    }}>
       {children}
     </UserContext.Provider>
   );
