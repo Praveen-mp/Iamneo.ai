@@ -9,7 +9,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import showSidebarIcon from "../assets/icon-show-sidebar.svg";
 import hideSidebarIcon from "../assets/icon-hide-sidebar.svg";
 import mockCards from '../data.json'
-import boardActions from "../store/slices/boards.slice";
+import boardSlice, * as boardActions from "../store/slices/boards.slice";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 
 function Sidebar({ isSideBarOpen, setIsSideBarOpen }) {

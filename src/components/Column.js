@@ -1,7 +1,7 @@
 import { shuffle } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import boardActions from "../store/slices/boards.slice";
+import boardsSlice, * as boardActions from "../store/slices/boards.slice";
 import Task from "./Task";
 
 function Column({ colIndex }) {

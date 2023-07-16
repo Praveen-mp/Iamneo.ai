@@ -9,7 +9,7 @@ import AddEditTaskModal from "../modals/AddEditTaskModal";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteModal from "../modals/DeleteModal";
-import boardActions from "../store/slices/boards.slice";
+import boardsSlice,* as boardActions from "../store/slices/boards.slice";
 
 import SearchInput from "./SearchBar";
 function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
@@ -89,7 +89,7 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
               setIsTaskModalOpen((prevState) => !prevState);
             }}
           >
-            + Add user
+            + Add users
           </button>
           <button
             onClick={() => {
