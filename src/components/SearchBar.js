@@ -1,6 +1,5 @@
 // SearchBar.js
 import React, { useContext } from 'react';
-// import { Container } from '@mui/material';
 import UserContext from '../searchInput/UserContext';
 import SearchIcon from '../assets/search.png';
 import { Container } from '../styles/searchStyle';

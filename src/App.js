@@ -13,7 +13,6 @@ function App() {
     return state.boards
   });
  
-  // console.log(boards);
   const activeBoard = boards.find((board) => board.isActive);
   if (!activeBoard && boards.length > 0)
     dispatch(boardActions.setBoardActive({ index: 0 }));

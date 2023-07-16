@@ -58,7 +58,7 @@ function Task({ colIndex, taskIndex }) {
           #{completed} requests
         </p>
         
-        {/* <img src={user.picture.thumbnail} alt="User Thumbnail" /> */}
+        
         <Box
       sx={{
         '& > legend': { mt: 2 },

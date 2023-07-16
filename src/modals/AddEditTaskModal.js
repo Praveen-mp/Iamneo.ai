@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import crossIcon from "../assets/icon-cross.svg";
 import boardsSlice, * as boardActions from "../store/slices/boards.slice";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 function AddEditTaskModal({
   type,
   device,
