@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext } from "react";
 import ElipsisMenu from "../components/ElipsisMenu";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
-import boardActions from "../store/slices/boards.slice";
+import boardsSlice, * as boardActions from  "../store/slices/boards.slice";
 import AddEditTaskModal from "./AddEditTaskModal";
 import DeleteModal from "./DeleteModal";
 
