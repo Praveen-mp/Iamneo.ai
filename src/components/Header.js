@@ -61,21 +61,15 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
             iamneo.ai 
           </h3>
           <span className="md:text-2xl  hidden md:inline-block font-small  font-sans">talent center</span>
-          {/* <Cards/> */}
-           {/* <Cards/> */}
+          
            <SearchInput/>
          
           
-          {/* {filteredCards.map((card)=>{
-             <div key={card}>
-                   
-             </div>
-          })} */}
-         
+          
 
           <div className=" flex items-center ">
             <h3 className=" truncate max-w-[200px] md:text-2xl text-xl font-bold md:ml-20 font-sans  ">
-              {/* {board.name} */}
+             
             </h3>
             <img
               src={openDropdown ? iconUp : iconDown}
