@@ -9,27 +9,17 @@ import AddEditTaskModal from "../modals/AddEditTaskModal";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteModal from "../modals/DeleteModal";
-import boardsSlice, * as boardActions from "../store/slices/boards.slice";
+import boardSlice, * as boardActions from "../store/slices/boards.slice";
+
 import SearchInput from "./SearchBar";
-import BasicBreadcrumbs from "./Breadcrumb";
-import ResponsiveAppBar from "./AppNav";
-import mockCards from "../data/card";
-import { useContext } from "react";
-import { SearchContext } from "../searchInput/SearchContext";
 function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [isElipsisMenuOpen, setIsElipsisMenuOpen] = useState(false);
   const [boardType, setBoardType] = useState("add");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
-  const { searchQuery } = useContext(SearchContext);
-  const filteredCards = mockCards.Work.columns.filter((card) =>
-  // card.title.toLowerCase().includes(searchQuery.toLowerCase())
-    card.id ==searchQuery
-);
-// const filteredCards = mockCards.Work.columns.map((ids)=>{
-//     ids.id.includes(searchQuery.toLowerCase());
-// })
+ 
+  
   const dispatch = useDispatch();
   
   const boards = useSelector((state) => state.boards);
@@ -71,22 +61,10 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
             iamneo.ai 
           </h3>
           <span className="md:text-2xl  hidden md:inline-block font-small  font-sans">talent center</span>
-          <SearchInput/>
-           
-          {filteredCards.map((card) => (
-              <div key={card.id}>
-                hello
-                <h3>{card.name}</h3>
-                <p>{card.tasks.map((i)=>{
-                  <div>
-                    {i.description},
-                    {i.status},
-                    {i.status}
-                  </div>
-                })}</p>
-              </div>
-      ))}
-
+          {/* <Cards/> */}
+           {/* <Cards/> */}
+           <SearchInput/>
+         
           
           {/* {filteredCards.map((card)=>{
              <div key={card}>
@@ -117,7 +95,7 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
               setIsTaskModalOpen((prevState) => !prevState);
             }}
           >
-            + Add New Task
+            + Add user
           </button>
           <button
             onClick={() => {

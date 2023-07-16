@@ -4,14 +4,13 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './store/index';
-import { SearchProvider } from './searchInput/SearchContext';
-
+import { UserProvider } from './searchInput/UserContext';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <SearchProvider>
+      <UserProvider>
         <App />
-      </SearchProvider>
+      </UserProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

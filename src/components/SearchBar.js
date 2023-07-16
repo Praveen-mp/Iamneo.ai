@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { clearFilters, filterBoards, setSearchText,searchReducer } from '../store/slices/boards.slice';
+// SearchBar.js
+import React, { useContext } from 'react';
+// import { Container } from '@mui/material';
+import UserContext from '../searchInput/UserContext';
 import SearchIcon from '../assets/search.png';
 import { Container } from '../styles/searchStyle';
-import { useContext,createContext } from 'react';
-import { SearchContext } from '../searchInput/SearchContext';
-const SearchInput = () => {
-  const { searchQuery, updateSearchQuery } = useContext(SearchContext);
-  
-  const handleSearch = (e) => {
-    updateSearchQuery(e.target.value);
+const SearchBar = () => {
+  const { searchName, setSearchName } = useContext(UserContext);
+
+  const handleSearch = (event) => {
+    setSearchName(event.target.value);
   };
+
   return (
     <div>
       <Container>
         <input
           type="search"
           placeholder="Search for cards titles..."
-          value={searchQuery} onChange={handleSearch}
+          value={searchName} onChange={handleSearch}
         />
         <img src={SearchIcon} width={30} alt="Search icon" />
       </Container>
@@ -25,4 +25,5 @@ const SearchInput = () => {
     </div>
   );
 };
-export default SearchInput
+
+export default SearchBar;

@@ -8,7 +8,7 @@ import lightIcon from "../assets/icon-light-theme.svg";
 import WorkIcon from '@mui/icons-material/Work';
 import showSidebarIcon from "../assets/icon-show-sidebar.svg";
 import hideSidebarIcon from "../assets/icon-hide-sidebar.svg";
-import boards from '../data.json'
+import mockCards from '../data.json'
 import boardsSlice, * as boardActions from "../store/slices/boards.slice";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 

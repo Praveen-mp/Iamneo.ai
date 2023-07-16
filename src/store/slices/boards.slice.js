@@ -104,31 +104,7 @@ const boardsSlice = createSlice({
       const board = state.find((board) => board.isActive);
       const col = board.columns.find((col, i) => i === payload.colIndex);
       col.tasks = col.tasks.filter((task, i) => i !== payload.taskIndex);
-    },
-    filterBoards:(state,action)=>{
-      const searchText=state.searchText;
-      const title=action.payload.title;
-      const filterBoards = state.boards.map(board=>{
-        if(searchText.length>0){
-           if(board.title.toUpperCase().includes(searchText.toUpperCase())){
-               return {...board,hidden:false};
-           }else{
-             if(title.includes(board.title)) return {...board,hidden:false};
-           }
-           return {...board,hidden:true};
-        }
-      });
-      state.boards=filterBoards;
-    },
-    clearFilters:(state)=>{
-      const clearedFiltersBoards = state.boards.map(board => ({
-        ...board,
-        hidden: false
-      }));
-
-      state.boards = clearedFiltersBoards;
     }
-    
   },
 });
 

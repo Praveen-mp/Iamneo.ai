@@ -80,7 +80,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
         <div className=" relative flex   justify-between w-full items-center">
           <h1 className=" text-lg">{task.title}</h1>
 
-          <img
+          {/* <img
             onClick={() => {
               setIsElipsisMenuOpen((prevState) => !prevState);
             }}
@@ -94,19 +94,19 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
               setOpenDeleteModal={setOpenDeleteModal}
               type="Task"
             />
-          )}
+          )} */}
         </div>
         <p className=" text-gray-500 font-[600] tracking-wide text-xs pt-6">
-          {task.description}
+          {task.name}
         </p>
-
+         
         <p className=" pt-6 text-gray-500 tracking-widest text-sm">
           Subtasks ({completed} of {subtasks.length})
         </p>
 
         {/* subtasks section */}
 
-        <div className=" mt-3 space-y-2">
+        {/* <div className=" mt-3 space-y-2">
           {subtasks.map((subtask, index) => {
             return (
               <Subtask
@@ -117,7 +117,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
               />
             );
           })}
-        </div>
+        </div> */}
 
         {/* Current Status Section */}
 
