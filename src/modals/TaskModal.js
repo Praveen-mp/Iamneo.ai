@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useContext } from "react";
 import ElipsisMenu from "../components/ElipsisMenu";
@@ -6,10 +6,17 @@ import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import boardsSlice, * as boardActions from  "../store/slices/boards.slice";
 import AddEditTaskModal from "./AddEditTaskModal";
 import DeleteModal from "./DeleteModal";
-
+import axios from 'axios'
 import UserContext from "../searchInput/UserContext";
 function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
+//   const fetchDetails= async()=>{
+//     const data = await axios.post('http://localhost:2000/')
+//     console.log(data);
+// }
   const dispatch = useDispatch();
+//   useEffect(()=>{
+//     fetchDetails();
+// },[]);
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
   const [isElipsisMenuOpen, setIsElipsisMenuOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -61,7 +68,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
       setIsDeleteModalOpen(false);
     }
   };
-
+  
   
 
   const setOpenEditModal = () => {
@@ -73,6 +80,9 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
     setIsElipsisMenuOpen(false);
     setIsDeleteModalOpen(true);
   };
+  
+ 
+ 
 
   return (
     <div
@@ -103,11 +113,11 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
         </div>
         
         <h2>User Details</h2>
-      <img src={selectedUser.picture.large} alt="User" />
-      <p>Name: {`${selectedUser.name.first} ${selectedUser.name.last}`}</p>
-      <p>Email: {selectedUser.email}</p>
-      <p>Location: {`${selectedUser.location.city}, ${selectedUser.location.country}`}</p>
-      <button onClick={() => setSelectedUser(null)}>Close</button>
+        <img src={selectedUser.picture.large} alt="User" />
+        <p>Name: {`${selectedUser.name.first} ${selectedUser.name.last}`}</p>
+        <p>Email: {selectedUser.email}</p>
+        <p>Location: {`${selectedUser.location.city}, ${selectedUser.location.country}`}</p>
+        <button onClick={() => setSelectedUser(null)}>Close</button>
         
 
         <div className="mt-8 flex flex-col space-y-3">

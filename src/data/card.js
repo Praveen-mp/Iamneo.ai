@@ -1,11 +1,9 @@
 const mockCards = {
   Work: {
-    id:1,
     isActive: false,
     image: "/work.png",
     columns: [
       {
-        id:'12',
         name: "Open",
         tasks: [
           {
@@ -46,7 +44,6 @@ const mockCards = {
         ]
       },
       {
-        id:'13',
         name: "Contacted",
         tasks: [
           {
@@ -111,7 +108,6 @@ const mockCards = {
         ]
       },
       {
-        id:'14',
         name: "Written test",
         tasks: [
           {

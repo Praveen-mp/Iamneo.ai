@@ -10,8 +10,9 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice,* as boardActions from "../store/slices/boards.slice";
-
+import Button from '@mui/material/Button';
 import SearchInput from "./SearchBar";
+
 function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [isElipsisMenuOpen, setIsElipsisMenuOpen] = useState(false);
@@ -50,6 +51,8 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
     }
   };
 
+  
+
   return (
     <div className=" p-4 fixed left-0 bg-white dark:bg-[#2b2c37] z-50 right-0 ">
      
@@ -83,22 +86,11 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
         {/* Right Side */}
 
         <div className=" flex space-x-4 items-center md:space-x-6 ">
-          <button
-            className=" button hidden md:block "
+          <Button 
             onClick={() => {
               setIsTaskModalOpen((prevState) => !prevState);
-            }}
-          >
-            + Add users
-          </button>
-          <button
-            onClick={() => {
-              setIsTaskModalOpen((prevState) => !prevState);
-            }}
-            className=" button py-1 px-3 md:hidden "
-          >
-            +
-          </button>
+            }} style={{background:"#635FC7",color:"#FFFFFF"}}>+ Add users</Button>
+           
 
           <img
             onClick={() => {

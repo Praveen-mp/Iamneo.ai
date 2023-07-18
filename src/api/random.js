@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://randomuser.me/api/?results=20';
+const BASE_URL = 'https://randomuser.me/api/?results=0';
 
 export const fetchUsers = async () => {
   try {

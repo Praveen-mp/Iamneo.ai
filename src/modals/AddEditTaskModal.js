@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import boardsSlice, * as boardActions from "../store/slices/boards.slice";
+import axios from "axios";
+import UserContext from "../searchInput/UserContext";
 function AddEditTaskModal({
   type,
   device,
@@ -97,7 +99,20 @@ function AddEditTaskModal({
       );
     }
   };
-
+   
+  //api call
+  const {users,setUsers} = useContext(UserContext);
+  const [newUserName, setNewUserName]=useState('')
+  const handleAddUser = async () => {
+    try {
+      const newUser = { name: newUserName };
+      const response = await axios.post('/users', newUser);
+      setUsers([...users, response.data]);
+      setNewUserName('');
+    } catch (error) {
+      console.error('Error adding user:', error);
+    }
+  };
   return (
     <div
       className={
@@ -174,22 +189,64 @@ function AddEditTaskModal({
 
         <div className="mt-8 flex flex-col space-y-1">
           <label className="  text-sm dark:text-white text-gray-500">
-            Description
+          Dob
           </label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            id="task-description-input"
-            className=" bg-transparent outline-none min-h-[200px] focus:border-0 px-4 py-2 rounded-md text-sm  border-[0.5px] border-gray-600 focus:outline-[#635fc7] outline-[1px] "
-            placeholder="e.g. It's always good to take a break. This 
-            15 minute break will  recharge the batteries 
-            a little."
+          <input
+            
+           
+            id="task-name-input"
+            type="dob"
+            className=" bg-transparent  px-4 py-2 outline-none focus:border-0 rounded-md text-sm  border-[0.5px] border-gray-600 focus:outline-[#635fc7] outline-1  ring-0  "
+            placeholder="Dob"
           />
+
         </div>
         
 
-        
+        <div className="mt-8 flex flex-col space-y-1">
+          <label className="  text-sm dark:text-white text-gray-500">
+          Location
+          </label>
+          <input
+            
+           
+            id="task-name-input"
+            type="text"
+            className=" bg-transparent  px-4 py-2 outline-none focus:border-0 rounded-md text-sm  border-[0.5px] border-gray-600 focus:outline-[#635fc7] outline-1  ring-0  "
+            placeholder="Location"
+          />
+
+        </div>
          
+        <div className="mt-8 flex flex-col space-y-1">
+          <label className="  text-sm dark:text-white text-gray-500">
+          Gender
+          </label>
+          <input
+            
+           
+            id="task-name-input"
+            type="text"
+            className=" bg-transparent  px-4 py-2 outline-none focus:border-0 rounded-md text-sm  border-[0.5px] border-gray-600 focus:outline-[#635fc7] outline-1  ring-0  "
+            placeholder="Gender"
+          />
+
+        </div>
+
+        <div className="mt-8 flex flex-col space-y-1">
+          <label className="  text-sm dark:text-white text-gray-500">
+          Dob
+          </label>
+          <input
+            
+           
+            id="task-name-input"
+            type="text"
+            className=" bg-transparent  px-4 py-2 outline-none focus:border-0 rounded-md text-sm  border-[0.5px] border-gray-600 focus:outline-[#635fc7] outline-1  ring-0  "
+            placeholder="Gender"
+          />
+
+        </div>
 
         {/* current Status  */}
         <div className="mt-8 flex flex-col space-y-3">
@@ -206,14 +263,7 @@ function AddEditTaskModal({
             ))}
           </select>
           <button
-            onClick={() => {
-              const isValid = validate();
-              if (isValid) {
-                onSubmit(type);
-                setIsAddTaskModalOpen(false);
-                type === "edit" && setIsTaskModalOpen(false);
-              }
-            }}
+            onClick={handleAddUser}
             className=" w-full items-center text-white bg-[#635fc7] py-2 rounded-full "
           >
            {type === "edit" ? " save edit" : "Create task"}

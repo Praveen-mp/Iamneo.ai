@@ -4,6 +4,7 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 import Column from "./Column";
 import EmptyBoard from "./EmptyBoard";
 import Sidebar from "./Sidebar";
+import TemporaryDrawer from '../components/Drawer'
 
 function Home() {
   const [windowSize, setWindowSize] = useState([
@@ -39,6 +40,7 @@ function Home() {
           : "bg-[#f4f7fd]  scrollbar-hide h-screen flex    dark:bg-[#20212c] overflow-x-scroll gap-6 "
       }
     >
+      
       {windowSize[0] >= 768 && (
         <Sidebar
           setIsBoardModalOpen={setIsBoardModalOpen}
@@ -46,7 +48,9 @@ function Home() {
           isSideBarOpen={isSideBarOpen}
           setIsSideBarOpen={setIsSideBarOpen}
         />
+        
       )}
+      
 
       {/* Columns Section */}
 
